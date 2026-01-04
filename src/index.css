@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: "font1";
+    src: url('../fonts/font1.woff2');
+}
+
+@font-face {
+    font-family: "font2";
+    src: url('../fonts/font2.otf');
+}
+
+@font-face {
+    font-family: "font3";
+    src: url('../fonts/font3.otf');
+}
+
+@font-face {
+    font-family: "font4";
+    src: url('../fonts/font4.otf');
+}
+
+@font-face {
+    font-family: "font5";
+    src: url('../fonts/font5.otf');
+}
+
+@font-face {
+    font-family: "font6";
+    src: url('../fonts/font6.otf');
+}
+
+body::-webkit-scrollbar{
+    display: none;
+}
+
+::selection {
+  @apply bg-black text-white;
+}
