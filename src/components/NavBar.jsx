@@ -44,7 +44,9 @@ const NavBar = () => {
                         <hr className={`h-0.5 w-2/3 group-hover:w-full bg-black transition-all duration-300 ${open ? "opacity-0" : "opacity-100"}`} />
                         <hr className={`h-0.5 w-full bg-black origin-left transition-transform duration-300 ${open ? "-rotate-45" : "rotate-0"}`} />
                     </div>
+                    <a href="/">
                     <img src="/images/charley_signature_logo.svg" alt="Logo" />
+                    </a>
                     <div className="hidden sm:flex gap-10 font-[font1] text-[14px]">
                         <div className="group flex flex-col gap-1 justify-center ">
                             <NavLi linkText={"Portfolio"} />
