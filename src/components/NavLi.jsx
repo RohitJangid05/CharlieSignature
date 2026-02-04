@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom"
 
-const NavLi = ({ linkText, className="" }) => {
+const NavLi = ({ linkText, className="", clickFun }) => {
     return (
         <>
-            <div className="group inline-flex flex-col items-start gap-1 w-fit">
+            <div onClick={clickFun} className="group inline-flex flex-col items-start gap-1 w-fit">
                 <Link to={linkText.toLowerCase()} className={`${className} uppercase tracking-[0.3em] font-semibold`}>
                     {linkText}
                 </Link>

@@ -1,14 +1,17 @@
-import { use, useRef, useState } from "react"
+import { useRef, useState } from "react"
 import { CiLinkedin } from "react-icons/ci";
 import { FaInstagram } from "react-icons/fa";
-import { RiArrowDropDownLine, RiArrowDropUpLine } from "react-icons/ri";
+import { RiArrowDropDownLine } from "react-icons/ri";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import NavLi from "./NavLi";
+import { useLocation } from "react-router-dom";
 
 
 const NavBar = () => {
+    let { pathname } = useLocation()
+
     gsap.registerPlugin(ScrollTrigger);
     const [open, setOpen] = useState(false);
     const [dropDown, setDropDown] = useState(false)
@@ -26,6 +29,7 @@ const NavBar = () => {
         });
     });
 
+
     const handleClick = () => {
         if (open) {
             dropDownRef.current.style.top = "-100vh"
@@ -33,11 +37,12 @@ const NavBar = () => {
             dropDownRef.current.style.top = "0"
         }
         setOpen(prev => !prev);
+
     };
 
     return (
         <>
-            <nav ref={navRef} className='w-full h-full bg-transparent relative z-10'>
+            <nav ref={navRef} className={`${pathname=="/"?"bg-transparent":"bg-white"} w-full h-full bg-transparent relative z-10`}>
                 <div className="w-full h-28 px-5 sm:px-15 py-6 flex justify-between items-center">
                     <div onClick={handleClick} className="w-7 flex flex-col gap-2 cursor-pointer group relative z-2">
                         <hr className={`h-0.5 w-full bg-black origin-left transition-transform duration-300 ${open ? "rotate-45" : "rotate-0"}`} />
@@ -45,13 +50,14 @@ const NavBar = () => {
                         <hr className={`h-0.5 w-full bg-black origin-left transition-transform duration-300 ${open ? "-rotate-45" : "rotate-0"}`} />
                     </div>
                     <a href="/">
-                    <img src="/images/charley_signature_logo.svg" alt="Logo" />
+                        <img src="/images/charley_signature_logo.svg" alt="Logo" />
                     </a>
                     <div className="hidden sm:flex gap-10 font-[font1] text-[14px]">
-                        <div className="group flex flex-col gap-1 justify-center ">
+                        <div
+                            className="group flex flex-col gap-1 justify-center ">
                             <NavLi linkText={"Portfolio"} />
                         </div>
-                        <div className="group flex flex-col gap-1 justify-center ">
+                        <div className="group flex flex-col gap-1 justify-center">
                             <NavLi linkText={"Contact"} />
                         </div>
                     </div>
@@ -65,11 +71,11 @@ const NavBar = () => {
                                     <NavLi linkText={"About US"} />
                                     <RiArrowDropDownLine
                                         onClick={() => setDropDown(p => !p)}
-                                        className={`sm:hidden text-2xl transition-transform duration-500 ${dropDown ? "rotate-180" : "rotate-0"}`}/>
+                                        className={`sm:hidden text-2xl transition-transform duration-500 ${dropDown ? "rotate-180" : "rotate-0"}`} />
                                 </div>
 
                                 <div
-                                    className={` sm:hidden overflow-hidden flex flex-col gap-3 my-2 transition-[max-height,opacity,transform] duration-500 ease-in-out ${dropDown? "max-h-137 opacity-100 translate-y-0": "max-h-0 opacity-0 -translate-y-1"}`}>
+                                    className={` sm:hidden overflow-hidden flex flex-col gap-3 my-2 transition-[max-height,opacity,transform] duration-500 ease-in-out ${dropDown ? "max-h-137 opacity-100 translate-y-0" : "max-h-0 opacity-0 -translate-y-1"}`}>
                                     <NavLi linkText={"THE CRAFT OF ELEGANCE"} />
                                     <NavLi linkText={"SIGNATURE OF ELEGANCE"} />
                                     <NavLi linkText={"RARE & REFINED, GLOBALLY"} />
@@ -82,9 +88,9 @@ const NavBar = () => {
                             <NavLi linkText={"Design & Art Direction"} />
                             <NavLi linkText={"ULTRA HIGH NET WORTH INDIVIDUALS"} />
                             <NavLi linkText={"CLIENTS"} />
-                            <NavLi linkText={"PORTFOLIO"} />
+                            <NavLi clickFun={handleClick} linkText={"PORTFOLIO"} />
                             <NavLi linkText={"PRESS"} />
-                            <NavLi linkText={"CONTACT"} />
+                            <NavLi clickFun={handleClick} linkText={"CONTACT"} />
                         </div>
                         <div className="hidden sm:inline-flex flex-col gap-5">
                             <NavLi linkText={"THE CRAFT OF ELEGANCE"} />
